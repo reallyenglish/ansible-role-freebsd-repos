@@ -1,7 +1,7 @@
-ansible-role-freebsd_repos
+ansible-role-freebsd-repos
 =====================
 
-A brief description of the role goes here.
+Configure an alternate package repository for FreeBSD
 
 Requirements
 ------------
@@ -11,9 +11,13 @@ None
 Role Variables
 --------------
 
-| variable | description | default |
+| Variable | Description | Default |
 |----------|-------------|---------|
-
+| freebsd\_repos\_dir | path to pkg repo dir | /usr/local/etc/pkg/repos |
+| freebsd\_repos\_name | name of the repo | reallyenglish |
+| freebsd\_repos\_url | URL of the repo (required) | "" |
+| freebsd\_repos\_mirror\_type | | srv |
+| freebsd\_repos\_mirror\_signature\_type | | none |
 
 Dependencies
 ------------
@@ -23,6 +27,11 @@ None
 Example Playbook
 ----------------
 
+    - hosts: localhost
+      roles:
+        - ansible-role-freebsd-repos
+      vars:
+        freebsd_repos_url: pkg+http://10.3.build.reallyenglish.com/${ABI}
 
 License
 -------

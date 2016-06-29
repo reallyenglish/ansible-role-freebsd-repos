@@ -1,5 +1,4 @@
 freebsd_repos_dir: /usr/local/etc/pkg/repos
-freebsd_repos: {}
 freebsd_repos_name: reallyenglish
 freebsd_repos_url:
 freebsd_repos_mirror_type: srv

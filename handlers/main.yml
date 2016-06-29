@@ -1,0 +1,6 @@
+---
+
+- name: Restart freebsd_repos_config
+  service:
+    name: freebsd_repos
+    state: restarted

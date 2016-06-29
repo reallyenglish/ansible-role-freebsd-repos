@@ -1,0 +1,5 @@
+- hosts: localhost
+  roles:
+    - ansible-role-freebsd-repos
+  vars:
+    freebsd_repos_url: pkg+http://10.3.build.reallyenglish.com/${ABI}

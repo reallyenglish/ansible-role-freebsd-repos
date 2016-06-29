@@ -1,0 +1,20 @@
+---
+# tasks file for ansible-role-freebsd_repos
+
+- name: Create repo directory
+  file:
+    path: "{{ freebsd_repos_dir }}"
+    state: directory
+    mode: 0755
+
+- name: Disable default repo
+  template:
+    src: FreeBSD.conf.j2
+    dest: "{{ freebsd_repos_dir }}/FreeBSD.conf"
+    mode: 0644
+
+- name: Enable the repo
+  template:
+    src: repo.conf.j2
+    dest: "{{ freebsd_repos_dir }}/{{ freebsd_repos_name }}.conf"
+    mode: 0644

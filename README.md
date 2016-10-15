@@ -1,15 +1,12 @@
-ansible-role-freebsd-repos
-=====================
+# ansible-role-freebsd-repos
 
-Configure an alternate package repository for FreeBSD
+Configures alternate package repository for FreeBSD
 
-Requirements
-------------
+# Requirements
 
 None
 
-Role Variables
---------------
+# Role Variables
 
 | Variable | Description | Default |
 |----------|-------------|---------|
@@ -19,13 +16,11 @@ Role Variables
 | freebsd\_repos\_mirror\_type | | srv |
 | freebsd\_repos\_mirror\_signature\_type | | none |
 
-Dependencies
-------------
+# Dependencies
 
 None
 
-Example Playbook
-----------------
+# Example Playbook
 
     - hosts: localhost
       roles:
@@ -33,9 +28,9 @@ Example Playbook
       vars:
         freebsd_repos_url: pkg+http://10.3.build.reallyenglish.com/${ABI}
 
-License
--------
+# License
 
+```
 Copyright (c) 2016 Tomoyuki Sakurai <tomoyukis@reallyenglish.com>
 
 Permission to use, copy, modify, and distribute this software for any
@@ -49,9 +44,9 @@ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+```
 
-Author Information
-------------------
+# Author Information
 
 Tomoyuki Sakurai <tomoyukis@reallyenglish.com>
 

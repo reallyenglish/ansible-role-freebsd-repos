@@ -10,11 +10,14 @@ None
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| freebsd\_repos\_dir | path to pkg repo dir | /usr/local/etc/pkg/repos |
-| freebsd\_repos\_name | name of the repo | reallyenglish |
-| freebsd\_repos\_url | URL of the repo (required) | "" |
-| freebsd\_repos\_mirror\_type | | srv |
-| freebsd\_repos\_mirror\_signature\_type | | none |
+| freebsd\_repos\_dir                       | path to pkg repo dir | /usr/local/etc/pkg/repos |
+| freebsd\_repos\_name                      | name of the repo | reallyenglish |
+| freebsd\_repos\_url                       | URL of the repo (required) | "" |
+| freebsd\_repos\_mirror\_type              | MIRROR\_TYPE, see `pkg.conf(5)` | srv |
+| freebsd\_repos\_mirror\_signature\_type   | SIGNATURE\_TYPE, see `pkg.conf(5)` | none |
+
+Created by [yaml2readme.rb](https://gist.github.com/trombik/b2df709657c08d845b1d3b3916e592d3)
+
 
 # Dependencies
 

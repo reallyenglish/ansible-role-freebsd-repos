@@ -12,6 +12,7 @@
     src: FreeBSD.conf.j2
     dest: "{{ freebsd_repos_dir }}/FreeBSD.conf"
     mode: 0644
+  when: freebsd_repos_disable_default_repository
 
 - name: Enable the repo
   template:

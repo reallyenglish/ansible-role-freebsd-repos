@@ -3,3 +3,5 @@ freebsd_repos_name: reallyenglish
 freebsd_repos_url:
 freebsd_repos_mirror_type: srv
 freebsd_repos_mirror_signature_type: "none"
+freebsd_repos_priority: 0
+freebsd_repos_disable_default_repository: true

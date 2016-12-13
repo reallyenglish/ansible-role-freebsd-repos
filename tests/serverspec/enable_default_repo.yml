@@ -4,3 +4,4 @@
   vars:
     freebsd_repos_url: pkg+http://10.3.build.reallyenglish.com/${ABI}
     freebsd_repos_priority: 100
+    freebsd_repos_disable_default_repository: false

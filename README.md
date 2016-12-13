@@ -15,6 +15,8 @@ None
 | freebsd\_repos\_url                       | URL of the repo (required) | "" |
 | freebsd\_repos\_mirror\_type              | MIRROR\_TYPE, see `pkg.conf(5)` | srv |
 | freebsd\_repos\_mirror\_signature\_type   | SIGNATURE\_TYPE, see `pkg.conf(5)` | none |
+| `freebsd_repos_priority`                  | `PRIORITY`, see `pkg.conf(5)` | 0 |
+| `freebsd_repos_disable_default_repository` | If `true`, disable the official default package site | `true` |
 
 Created by [yaml2readme.rb](https://gist.github.com/trombik/b2df709657c08d845b1d3b3916e592d3)
 
@@ -30,6 +32,7 @@ None
         - ansible-role-freebsd-repos
       vars:
         freebsd_repos_url: pkg+http://10.3.build.reallyenglish.com/${ABI}
+    freebsd_repos_priority: 100
 
 # License
 

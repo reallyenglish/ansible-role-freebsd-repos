@@ -2,9 +2,7 @@ require 'spec_helper'
 require 'serverspec'
 
 describe file('/usr/local/etc/pkg/repos/FreeBSD.conf') do
-  it { should be_file }
-  it { should be_mode 644 }
-  its(:content) { should match /FreeBSD: { enabled: no }/ }
+  it { should_not exist }
 end
 
 describe file('/usr/local/etc/pkg/repos/reallyenglish.conf') do

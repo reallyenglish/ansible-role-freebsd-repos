@@ -39,3 +39,11 @@ suites:
     verifier:
       name: shell
       command: rspec -c -f d -I tests/serverspec tests/serverspec/default_spec.rb
+
+  - name: enable_default_repo
+    provisioner:
+      name: ansible_playbook
+      playbook: tests/serverspec/enable_default_repo.yml
+    verifier:
+      name: shell
+      command: rspec -c -f d -I tests/serverspec tests/serverspec/enable_default_repo_spec.rb

@@ -7,6 +7,26 @@
     state: directory
     mode: 0755
 
+- assert:
+    msg: "invalid URL scheme found in freebsd_repos_url, use one that fetch(3) supports, pkg+http, or pkg+https: `{{ freebsd_repos_url }}`"
+    that:
+      - freebsd_repos_url | match("(?:https?|ftp|file|pkg\+https?):\/\/")
+
+- assert:
+    msg: "freebsd_repos_mirror_type must be one of HTTP, NONE, or SRV: `{{ freebsd_repos_mirror_type }}`"
+    that:
+      - freebsd_repos_mirror_type | upper | match("(?:HTTP|NONE|SRV)")
+
+- assert:
+    msg: "freebsd_repos_mirror_signature_type must be one of NONE, PUBKEY, or FINGERPRINTS: `{{ freebsd_repos_mirror_signature_type }}`"
+    that:
+      - freebsd_repos_mirror_signature_type | upper | match("(?:NONE|PUBKEY|FINGERPRINTS)")
+
+- assert:
+    msg: "freebsd_repos_priority must be integer: `{{ freebsd_repos_priority }}`"
+    that:
+      - freebsd_repos_priority is number
+
 - name: Disable default repo
   template:
     src: FreeBSD.conf.j2

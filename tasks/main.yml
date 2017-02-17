@@ -12,7 +12,7 @@
     src: repo.conf.j2
     dest: "{{ freebsd_repos_dir }}/{{ freebsd_repos_name }}.conf"
     mode: 0644
-    validate: pkg -vv --config %s | grep -E '^[[:space:]]+reallyenglish:[[:space:]]+{'
+    validate: pkg -vv --config %s | grep -E '^[[:space:]]+{{ freebsd_repos_name }}:[[:space:]]+{'
 
 - name: Disable default repo
   # XXX disable the default repo last only when other repo is validated and

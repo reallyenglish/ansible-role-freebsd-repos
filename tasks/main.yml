@@ -15,12 +15,12 @@
 - assert:
     msg: "freebsd_repos_mirror_type must be one of HTTP, NONE, or SRV: `{{ freebsd_repos_mirror_type }}`"
     that:
-      - freebsd_repos_mirror_type | upper | match("(?:HTTP|NONE|SRV)")
+      - freebsd_repos_mirror_type | upper | match("(?:HTTP|NONE|SRV)$")
 
 - assert:
     msg: "freebsd_repos_mirror_signature_type must be one of NONE, PUBKEY, or FINGERPRINTS: `{{ freebsd_repos_mirror_signature_type }}`"
     that:
-      - freebsd_repos_mirror_signature_type | upper | match("(?:NONE|PUBKEY|FINGERPRINTS)")
+      - freebsd_repos_mirror_signature_type | upper | match("(?:NONE|PUBKEY|FINGERPRINTS)$")
 
 - assert:
     msg: "freebsd_repos_priority must be integer: `{{ freebsd_repos_priority }}`"

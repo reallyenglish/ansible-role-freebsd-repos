@@ -1,0 +1,16 @@
+---
+- hosts: server
+  become: yes
+  become_method: sudo
+  environment:
+    http_proxy: "{{ http_proxy | default() }}"
+    https_proxy: "{{ https_proxy | default() }}"
+    no_proxy: "{{ no_proxy | default() }}"
+
+  pre_tasks:
+  roles:
+    - ansible-role-freebsd-repos
+  vars:
+    freebsd_repos_url: pkg+http://10.3.build.reallyenglish.com/${ABI}
+    freebsd_repos_priority: 100
+    

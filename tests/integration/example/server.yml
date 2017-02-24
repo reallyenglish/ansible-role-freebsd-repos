@@ -11,6 +11,14 @@
   roles:
     - ansible-role-freebsd-repos
   vars:
-    freebsd_repos_url: pkg+http://10.3.build.reallyenglish.com/${ABI}
-    freebsd_repos_priority: 100
-    
+    freebsd_repos:
+      10.3.build:
+        url: pkg+http://10.3.build.reallyenglish.com/
+        priority: 100
+        enabled: "true"
+        mirror_type: srv
+        signature_type: none
+        state: present
+      FreeBSD:
+        state: present
+        enabled: "false"

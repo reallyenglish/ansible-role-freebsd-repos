@@ -14,6 +14,7 @@ provisioner:
   ansible_verbose: true
   ansible_extra_flags: <%= ENV['ANSIBLE_EXTRA_FLAGS'] %>
   http_proxy: <%= ENV['ANSIBLE_PROXY'] %>
+  idempotency_test: true
   additional_copy_path:
     - extra_modules
     - filter_plugins
@@ -39,11 +40,3 @@ suites:
     verifier:
       name: shell
       command: rspec -c -f d -I tests/serverspec tests/serverspec/default_spec.rb
-
-  - name: enable_default_repo
-    provisioner:
-      name: ansible_playbook
-      playbook: tests/serverspec/enable_default_repo.yml
-    verifier:
-      name: shell
-      command: rspec -c -f d -I tests/serverspec tests/serverspec/enable_default_repo_spec.rb

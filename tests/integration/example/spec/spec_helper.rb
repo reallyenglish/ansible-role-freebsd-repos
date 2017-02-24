@@ -1,6 +1,40 @@
 require 'infrataster/rspec'
 require 'socket'
 require 'shellwords'
+require 'socket'
+
+# @return [String] public IP address of workstation used for egress traffic
+def local_ip
+  @local_ip ||= begin
+    # turn off reverse DNS resolution temporarily
+    orig, Socket.do_not_reverse_lookup = Socket.do_not_reverse_lookup, true
+
+    # open UDP socket so that it never send anything over the network
+    UDPSocket.open do |s|
+      s.connect '8.8.8.8', 1 # any global IP address works here
+      s.addr.last
+    end
+  ensure
+    Socket.do_not_reverse_lookup = orig
+  end
+end
+# @return [Integer] default listening port
+def local_port ; ENV["ANSIBLE_LOCAL_PROXY"] ? ENV["ANSIBLE_LOCAL_PROXY"] : 8080 ; end
+# @return [String] the proxy URL
+def http_proxy_url ; "http://#{local_ip}:#{local_port}" ; end
+# @return [TrueClass,FalseClass] whether or not the port is listening
+def proxy_running?
+  socket = TCPSocket.new(local_ip, local_port)
+  true
+rescue SocketError, Errno::ECONNREFUSED,
+  Errno::EHOSTUNREACH, Errno::ENETUNREACH, IOError
+  false
+rescue Errno::EPERM, Errno::ETIMEDOUT
+  false
+ensure
+  socket && socket.close
+end
+http_proxy = proxy_running? ? http_proxy_url : ''
 
 ENV['VAGRANT_CWD'] = File.dirname(__FILE__)
 ENV['LANG'] = 'C'

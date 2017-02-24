@@ -1,7 +1,11 @@
-{{ freebsd_repos_name }}: {
-  url: "{{ freebsd_repos_url }}",
-  mirror_type: "{{ freebsd_repos_mirror_type }}",
-  signature_type: "{{ freebsd_repos_mirror_signature_type }}",
-  enabled: yes
-  priority: {{ freebsd_repos_priority }}
+{{ item.key }}: {
+{% for k, v in item.value | dictsort %}
+{% if k != "state" %}
+{% if v == "true" or v == "false" or v | string | match("\d+$") %}
+  {{ k }}: {{ v }},
+{% else %}
+  {{ k }}: "{{ v }}",
+{% endif %}
+{% endif %}
+{% endfor %}
 }

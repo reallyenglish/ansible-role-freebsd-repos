@@ -10,16 +10,24 @@ None
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| freebsd\_repos\_dir                       | path to pkg repo dir | /usr/local/etc/pkg/repos |
-| freebsd\_repos\_name                      | name of the repo | reallyenglish |
-| freebsd\_repos\_url                       | URL of the repo (required) | "" |
-| freebsd\_repos\_mirror\_type              | MIRROR\_TYPE, see `pkg.conf(5)` | srv |
-| freebsd\_repos\_mirror\_signature\_type   | SIGNATURE\_TYPE, see `pkg.conf(5)` | none |
-| `freebsd_repos_priority`                  | `PRIORITY`, see `pkg.conf(5)` | 0 |
-| `freebsd_repos_disable_default_repository` | If `true`, disable the official default package site | `true` |
+| `freebsd_repos_dir` | path to pkg repo dir | `/usr/local/etc/pkg/repos` |
+| `freebsd_repos` | dict of repository configs (see below) | `{}` |
 
-Created by [yaml2readme.rb](https://gist.github.com/trombik/b2df709657c08d845b1d3b3916e592d3)
+## `freebsd_repos`
 
+This is a dict with key value pair described in `pkg.conf(5)`. In addtions to
+the keywords listed in `pkg.conf(5)`, a key, `state`, must be present with a
+value, either `present` or `absent`
+
+The following dict creates `/usr/local/etc/pkg/repos/FreeBSD.conf`, and
+effectively disables the default repository.
+
+```yaml
+freebsd_repos:
+  FreeBSD:
+    enabled: "false"
+    state: present
+```
 
 # Dependencies
 
@@ -27,12 +35,31 @@ None
 
 # Example Playbook
 
-    - hosts: localhost
-      roles:
-        - ansible-role-freebsd-repos
-      vars:
-        freebsd_repos_url: pkg+http://10.3.build.reallyenglish.com/${ABI}
-    freebsd_repos_priority: 100
+```yaml
+- hosts: localhost
+  roles:
+    - ansible-role-freebsd-repos
+  vars:
+    freebsd_repos:
+      FreeBSD:
+        enabled: "false"
+        state: present
+      10.3.build:
+        url: pkg+http://10.3.build.reallyenglish.com/${ABI}
+        enabled: "true"
+        mirror_type: srv
+        signature_type: none
+        priority: 100
+        state: present
+
+      10.1.build:
+        url: pkg+http://10.1.build.reallyenglish.com/${ABI}
+        enabled: "true"
+        mirror_type: srv
+        signature_type: none
+        priority: 100
+        state: present
+```
 
 # License
 

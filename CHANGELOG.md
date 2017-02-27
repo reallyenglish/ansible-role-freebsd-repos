@@ -15,7 +15,7 @@ The following variables have been removed.
 * `freebsd_repos_priority`
 * `freebsd_repos_disable_default_repository`
 
-Use `freebsd_repos`, which supports all ketwords described in
+Use `freebsd_repos`, which supports all keywords described in
 `pkg.conf(5)`.
 
 `freebsd_repos_disable_default_repository` should be replaced with:

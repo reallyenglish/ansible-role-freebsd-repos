@@ -34,7 +34,7 @@ rescue Errno::EPERM, Errno::ETIMEDOUT
 ensure
   socket && socket.close
 end
-def http_proxy proxy_running? ? http_proxy_url : "" end
+def http_proxy ; proxy_running? ? http_proxy_url : "" ; end
 
 ENV['VAGRANT_CWD'] = File.dirname(__FILE__)
 ENV['LANG'] = 'C'

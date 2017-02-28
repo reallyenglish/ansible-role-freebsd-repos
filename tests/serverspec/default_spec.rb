@@ -7,14 +7,14 @@ describe file('/usr/local/etc/pkg/repos/FreeBSD.conf') do
   its(:content) { should match /^FreeBSD: {\n\s+enabled: false,\n}/ }
 end
 
-[ "10.3.build", "10.1.build" ].each do |r|
-  describe file("/usr/local/etc/pkg/repos/#{ r }.conf") do
+["10.3.build", "10.1.build"].each do |r|
+  describe file("/usr/local/etc/pkg/repos/#{r}.conf") do
     it { should be_file }
     it { should be_mode 644 }
     it { should be_owned_by "root" }
     it { should be_grouped_into "wheel" }
     its(:content) { should match /^#{ Regexp.escape(r) }: {/ }
-    its(:content) { should match /url: "pkg\+http:\/\/#{ Regexp.escape(r) }\.reallyenglish.com\/\$\{ABI\}",/ }
+    its(:content) { should match %q{url: "pkg\+http://#{ Regexp.escape(r) }\.reallyenglish.com/\$\{ABI\}",} }
     its(:content) { should match /mirror_type: "srv",/ }
     its(:content) { should match /signature_type: "none",/ }
     its(:content) { should match /enabled:\s+true/ }

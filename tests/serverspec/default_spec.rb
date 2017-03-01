@@ -14,7 +14,7 @@ end
     it { should be_owned_by "root" }
     it { should be_grouped_into "wheel" }
     its(:content) { should match /^#{ Regexp.escape(r) }: {/ }
-    its(:content) { should match %q{url: "pkg\+http://#{ Regexp.escape(r) }\.reallyenglish.com/\$\{ABI\}",} }
+    its(:content) { should match %r{url: "pkg\+http://#{ Regexp.escape(r) }\.reallyenglish.com\/\$\{ABI\}",} }
     its(:content) { should match /mirror_type: "srv",/ }
     its(:content) { should match /signature_type: "none",/ }
     its(:content) { should match /enabled:\s+true/ }

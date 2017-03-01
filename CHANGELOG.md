@@ -1,3 +1,9 @@
+## Release 2.0.0
+
+* 48cea8e [bugfix] add integration test (#17)
+* 5383ed9 [backword imcompatible][feature] support multiple repositories and
+  arbitrary keywords (#16)
+
 ### Feature
 
 #### Multiple repository support

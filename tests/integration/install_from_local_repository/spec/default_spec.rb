@@ -1,11 +1,11 @@
-require 'spec_helper'
+require "spec_helper"
 
 class ServiceNotReady < StandardError
 end
 
-sleep 10 if ENV['JENKINS_HOME']
+sleep 10 if ENV["JENKINS_HOME"]
 
-context 'after provisioning finished' do
+context "after provisioning finished" do
   describe server(:server1) do
     it "is able to install logstash5" do
       result = current_server.ssh_exec("sudo env ASSUME_ALWAYS_YES=yes HTTP_PROXY=#{http_proxy} pkg install logstash5 && echo LOGSTASH_INSTALLED")

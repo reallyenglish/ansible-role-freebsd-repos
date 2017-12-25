@@ -1,7 +1,7 @@
-require 'spec_helper'
-require 'serverspec'
+require "spec_helper"
+require "serverspec"
 
-describe file('/usr/local/etc/pkg/repos/FreeBSD.conf') do
+describe file("/usr/local/etc/pkg/repos/FreeBSD.conf") do
   it { should be_file }
   it { should be_mode 644 }
   its(:content) { should match /^FreeBSD: {\n\s+enabled: false,\n}/ }
@@ -22,7 +22,7 @@ end
   end
 end
 
-describe command('pkg -vv') do
+describe command("pkg -vv") do
   its(:exit_status) { should eq 0 }
   its(:stderr) { should match(/^$/) }
   its(:stdout) { should match(/^\s+10\.3\.build:\s+{/) }
